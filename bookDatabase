@@ -1,0 +1,130 @@
+CREATE TABLE `author` (
+  `idAuthor` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `DateOfBirth` datetime DEFAULT NULL,
+  `NativeLand` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Story` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Image` varchar(1024) DEFAULT NULL,
+  `isActive` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`idAuthor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book` (
+  `idBook` varchar(1024) NOT NULL,
+  `Name` varchar(2255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `idAuthor` int NOT NULL,
+  `idCategory` int NOT NULL,
+  `idPublisher` int NOT NULL,
+  `idPublishing` int DEFAULT NULL,
+  `idLanguage` int DEFAULT NULL,
+  `Content` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Price` int DEFAULT NULL,
+  `Sell` int DEFAULT NULL,
+  `Bookcol` varchar(45) DEFAULT NULL,
+  `Sale` int DEFAULT NULL,
+  `NumberOfPages` int DEFAULT NULL,
+  `Weight` int DEFAULT NULL,
+  `Size` int DEFAULT NULL,
+  `idFormat` int DEFAULT NULL,
+  `Image` varchar(1024) DEFAULT NULL,
+  `Amount` int DEFAULT NULL,
+  `isActive` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`idBook`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `category` (
+  `idCategory` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `isActive` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`idCategory`),
+  UNIQUE KEY `idCategory_UNIQUE` (`idCategory`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `feedback` (
+  `idfeedback` int NOT NULL AUTO_INCREMENT,
+  `idUser` int NOT NULL,
+  `idBook` varchar(1024) NOT NULL,
+  `Comment` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`idfeedback`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `format` (
+  `idFormat` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`idFormat`),
+  UNIQUE KEY `idFormat_UNIQUE` (`idFormat`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `language` (
+  `idLanguage` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`idLanguage`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `order` (
+  `idOrder` int NOT NULL AUTO_INCREMENT,
+  `idUser` int NOT NULL,
+  `Recipient'sName` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateReceived` datetime NOT NULL,
+  `Status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `idPayment` int NOT NULL,
+  `DeliveryAddress` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `isActive` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`idOrder`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `orderdetails` (
+  `idOrderDetails` int NOT NULL AUTO_INCREMENT,
+  `idOrder` int NOT NULL,
+  `idBook` varchar(1024) NOT NULL,
+  `Amount` int DEFAULT NULL,
+  PRIMARY KEY (`idOrderDetails`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `payment` (
+  `idPayment` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(1025) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `isActive` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`idPayment`),
+  UNIQUE KEY `idPayment_UNIQUE` (`idPayment`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `publisher` (
+  `idPublisher` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `isActive` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`idPublisher`),
+  UNIQUE KEY `Name_UNIQUE` (`Name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `publishing` (
+  `idPublishing` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `isActive` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`idPublishing`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `role` (
+  `idRole` int NOT NULL AUTO_INCREMENT,
+  `RoleName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`idRole`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user` (
+  `idUser` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `DateOfBirth` datetime DEFAULT NULL,
+  `Email` varchar(1024) DEFAULT NULL,
+  `Address` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `PhoneNumber` varchar(12) DEFAULT NULL,
+  `Image` varchar(1024) DEFAULT NULL,
+  `UserName` varchar(1024) NOT NULL,
+  `Password` varchar(1024) NOT NULL,
+  `idRole` int NOT NULL,
+  `DateCreated` datetime NOT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`idUser`),
+  UNIQUE KEY `UserName_UNIQUE` (`UserName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
