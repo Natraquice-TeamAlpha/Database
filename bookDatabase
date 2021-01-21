@@ -64,8 +64,8 @@ CREATE TABLE `language` (
 
 CREATE TABLE `order` (
   `idOrder` int NOT NULL AUTO_INCREMENT,
-  `idUser` int NOT NULL,
-  `Recipient'sName` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `idUser` int NOT NULL,`RecipientOfName`
+  `RecipientOfName` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `DateCreated` datetime NOT NULL,
   `DateReceived` datetime NOT NULL,
   `Status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
