@@ -1,5 +1,6 @@
-Host: remotemysql.com
-User/database name: Z8He6B5wth
-Pass: HTGpHxKKEC
+Host: 34.96.133.34
+Database name: BookDatabase
+User: root
+Pass: Dunghoi1
 Port: 3306
-jdbc:mysql://remotemysql.com:3306/Z8He6B5wth
+jdbc:mysql://34.96.133.34:3306/BookDatabase
